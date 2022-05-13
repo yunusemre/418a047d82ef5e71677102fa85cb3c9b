@@ -27,7 +27,7 @@ function App() {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return list.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, data, list]);
+  }, [currentPage, list]);
 
   useEffect(() => {
     fetchData();
