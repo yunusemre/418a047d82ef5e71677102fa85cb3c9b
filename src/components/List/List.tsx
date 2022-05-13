@@ -7,6 +7,9 @@ const ProductList = (props: IProduct) => {
   const [showModal, setShowModal] = useState(false);
 
   const toggleDetails = () => {
+    !showModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = 'auto');
     setShowModal(!showModal);
   };
 
