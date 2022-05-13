@@ -42,6 +42,50 @@ body {
   }
 }
 
+.text-center {
+  text-align: center;
+}
+
 .c-pointer {
   cursor: pointer;
+}
+
+.select {
+  display: block;
+  min-height: 44px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-position: right center;
+  background-image: url('https://cdn.shopify.com/s/files/1/0212/1372/t/39/assets/arrow-down.svg?v=5103097903298822933');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-color: white;
+  color: #858585;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px 28px 4px 10px;
+  margin: 0 4px 4px 0px;
+  cursor: pointer;
+
+  &:focus {
+    outline: 1px solid #ddd;
+  }
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.form-group {
+  label {
+    font-size: 12px;
+  }
+  select {
+    margin-bottom: 10px;
+  }
+}
+
+hr {
+  border-top: 1px solid #eee;
 }

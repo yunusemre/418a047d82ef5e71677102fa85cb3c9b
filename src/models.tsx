@@ -49,20 +49,6 @@ export interface Image {
   admin_graphql_api_id: string;
 }
 
-export interface Image2 {
-  id: any;
-  product_id: any;
-  position: number;
-  created_at: Date;
-  updated_at: Date;
-  alt?: any;
-  width: number;
-  height: number;
-  src: string;
-  variant_ids: any[];
-  admin_graphql_api_id: string;
-}
-
 export interface IProduct {
   id: any;
   title: string;
@@ -81,7 +67,7 @@ export interface IProduct {
   variants: Variant[];
   options: Option[];
   images: Image[];
-  image: Image2;
+  image: Image;
 }
 
 export interface IRootObject {
