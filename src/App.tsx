@@ -1,4 +1,5 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import Loader from './components/Loader/Loader';
 import { IProduct, IRootObject } from './models';
 import { API, requestOptions } from './service';
 
@@ -53,11 +54,11 @@ function App() {
         <input
           className="form-control"
           type="search"
-          placeholder="Search list..."
+          placeholder="Search..."
           onChange={handleChange}
         />
-        <div className="loader">{!isLoading && list.length === 0 && <span>Bulamadım</span>}</div>
-        <Suspense fallback={<span>Loading...</span>}>
+        <h4>{!isLoading && list.length === 0 && <span>Not found</span>}</h4>
+        <Suspense fallback={<Loader />}>
           <ProductLists data={currentTableData} />
           <Pagination
             className="pagination-bar"
