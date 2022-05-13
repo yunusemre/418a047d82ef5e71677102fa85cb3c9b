@@ -4,7 +4,7 @@ import './index.scss';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-// react 18 has error use-ing useEffect
+// react 18 has error about useEffect when using strick mode
 // <React.StrictMode>
 //  <App />
 // </React.StrictMode>;
