@@ -21,7 +21,7 @@ const ProductList = (props: IProduct) => {
           <p className="product-content__title">
             <strong>{props.title}</strong>
           </p>
-          <span className="product-content__price">{props.variants[0]?.price}</span>
+          <span className="product-content__price">${props.variants[0]?.price}</span>
         </section>
       </li>
       {showModal && <Detail {...props} closeModal={toggleDetails} />}
