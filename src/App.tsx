@@ -3,7 +3,7 @@ import { IProduct, IRootObject } from './models';
 import { API, requestOptions } from './service';
 
 const Pagination = lazy(() => import('./components/Pagination'));
-const ProductList = lazy(() => import('./components/Lists'));
+const ProductLists = lazy(() => import('./components/Lists'));
 
 let PageSize: number = 10;
 
@@ -57,20 +57,16 @@ function App() {
           onChange={handleChange}
         />
         <div className="loader">{!isLoading && list.length === 0 && <span>Bulamadım</span>}</div>
-        <Suspense fallback={<span>Loading lists...</span>}>
-          <ul className="list-group">
-            {currentTableData.map((response: IProduct) => (
-              <ProductList key={response.id} {...response} />
-            ))}
-          </ul>
+        <Suspense fallback={<span>Loading...</span>}>
+          <ProductLists data={currentTableData} />
+          <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={list.length}
+            pageSize={PageSize}
+            onPageChange={(page: number) => setCurrentPage(page)}
+          />
         </Suspense>
-        <Pagination
-          className="pagination-bar"
-          currentPage={currentPage}
-          totalCount={list.length}
-          pageSize={PageSize}
-          onPageChange={(page: number) => setCurrentPage(page)}
-        />
       </div>
     </div>
   );
