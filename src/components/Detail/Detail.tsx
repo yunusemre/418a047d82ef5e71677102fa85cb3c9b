@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Image, Option } from '../../models';
-import Thumbs from '../Thumbs';
+import ProductImages from '../ProductImages';
 import './Detail.scss';
 
 const Detail = ({ title, body_html, image, images, options, variants, closeModal }: any) => {
@@ -30,16 +30,16 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
           </div>
           <div className="detail-modal-body">
             <div className="detail-modal-body-slider">
-              <div className="text-center">
-                {<img height="300" key={image.id} src={selectedImage} alt={image.alt} />}
-              </div>
-              <div className="detail-modal-body-slider__thumbs">
-                <Thumbs change={(newImage: string) => setSelectedImage(newImage)} images={images} />
-              </div>
+              <ProductImages
+                images={images}
+                image={image}
+                selectedImage={selectedImage}
+                setSelectedImage={(e: any) => setSelectedImage(e)}
+              />
             </div>
             <div className="detail-modal-body-content">
               <h3 className="detail-modal-body-content__title">{title}</h3>
-              <h5>${selectedPrice}</h5>
+              <h5 className="detail-modal-body-content__price">${selectedPrice}</h5>
               {options.map((opt: Option) => (
                 <div className="form-group" key={opt.id}>
                   <label>{opt.name}</label>
