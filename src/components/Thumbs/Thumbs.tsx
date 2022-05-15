@@ -13,7 +13,8 @@ const Thumbs = ({ variants, images, change }: any) => {
               big: img.width > img.height,
             })}`}
             key={img.id}
-            onClick={() => change(img.src)}>
+            onClick={() => change(img.src)}
+            href="#">
             <img className="c-pointer item-image" src={img.src} alt={img.alt} />
           </a>
         ) : null
