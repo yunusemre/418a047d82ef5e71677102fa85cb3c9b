@@ -13,7 +13,7 @@ const Thumbs = ({ variants, images, change }: any) => {
           return (
             <a
               className={`product-photo-thumbs__item ${classNames({
-                ['big']: img.width > img.height,
+                big: img.width > img.height,
               })}`}
               key={img.id}
               onClick={() => change(img.src)}>

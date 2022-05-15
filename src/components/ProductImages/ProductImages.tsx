@@ -8,7 +8,7 @@ const ProductImages = ({ variants, images, image, selectedImage, setSelectedImag
       {
         <img
           className={`first-image ${classNames({
-            ['big']: image.width > image.height,
+            big: image.width > image.height,
           })}`}
           key={image.id}
           src={selectedImage}
