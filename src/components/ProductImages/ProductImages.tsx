@@ -1,14 +1,27 @@
+import classNames from 'classnames';
 import Thumbs from '../Thumbs';
+import './ProductImages.scss';
 
-const ProductImages = ({ images, image, selectedImage, setSelectedImage }: any) => (
-  <>
-    <div className="text-center">
-      {<img height="300" key={image.id} src={selectedImage} alt={image.alt} />}
+const ProductImages = ({ variants, images, image, selectedImage, setSelectedImage }: any) => (
+  <div className="product-photo-container">
+    <div className="product-photo-container__showroom text-center">
+      {
+        <img
+          className={`first-image ${classNames({
+            ['big']: image.width > image.height,
+          })}`}
+          key={image.id}
+          src={selectedImage}
+          alt={image.alt}
+        />
+      }
     </div>
-    <div className="detail-modal-body-slider__thumbs">
-      <Thumbs change={(newImage: string) => setSelectedImage(newImage)} images={images} />
-    </div>
-  </>
+    <Thumbs
+      variants={variants}
+      change={(newImage: string) => setSelectedImage(newImage)}
+      images={images}
+    />
+  </div>
 );
 
 export default ProductImages;

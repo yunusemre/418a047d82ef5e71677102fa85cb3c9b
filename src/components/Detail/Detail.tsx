@@ -6,11 +6,13 @@ import './Detail.scss';
 const Detail = ({ title, body_html, image, images, options, variants, closeModal }: any) => {
   const [selectedImage, setSelectedImage] = useState(image.src);
   const [selectedPrice, setSelectedPrice] = useState(variants[0].price);
+  const [compareAtPrice, setCompareAtPrice] = useState(variants[0].compare_at_price);
 
   const selectOptions = (e: any, type: any) => {
     if (type.name === 'Size') {
       const size = variants.find((vrnt: any) => vrnt.title.indexOf(e.target.value) > -1);
       setSelectedPrice(size.price);
+      setCompareAtPrice(size.compare_at_price);
     }
     if (type.name === 'Color') {
       const size = variants.find((vrnt: any) => vrnt.title.indexOf(e.target.value) > -1);
@@ -31,6 +33,7 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
           <div className="detail-modal-body">
             <div className="detail-modal-body-slider">
               <ProductImages
+                variants={variants}
                 images={images}
                 image={image}
                 selectedImage={selectedImage}
@@ -39,7 +42,10 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
             </div>
             <div className="detail-modal-body-content">
               <h3 className="detail-modal-body-content__title">{title}</h3>
-              <h5 className="detail-modal-body-content__price">${selectedPrice}</h5>
+              <h2 className="detail-modal-body-content__price">
+                ${selectedPrice}
+                {compareAtPrice && <span className="compare">${compareAtPrice}</span>}
+              </h2>
               {options.map((opt: Option) => (
                 <div className="form-group" key={opt.id}>
                   <label>{opt.name}</label>

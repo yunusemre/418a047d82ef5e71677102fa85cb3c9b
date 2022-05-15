@@ -53,21 +53,6 @@
       @media screen and (max-width: 768px) {
         width: 100%;
       }
-      img {
-        text-align: center;
-        max-width: 95%;
-      }
-
-      &__thumbs {
-        img {
-          height: 90px;
-          border-radius: 4px;
-          overflow: hidden;
-          border: 1px solid #eee;
-          margin-right: 10px;
-          padding: 4px;
-        }
-      }
     }
     &-content {
       width: 60%;
@@ -79,6 +64,14 @@
 
       &__title {
         margin: 0 0 10px 0;
+      }
+
+      &__price {
+        .compare {
+          text-decoration: line-through;
+          font-size: 14px;
+          margin-left: 8px;
+        }
       }
     }
   }
