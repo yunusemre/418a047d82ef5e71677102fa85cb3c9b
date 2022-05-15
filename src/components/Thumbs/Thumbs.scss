@@ -1,0 +1,20 @@
+.product-photo-thumbs {
+  &__item {
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-right: 10px;
+    padding: 5px;
+    display: inline-block;
+
+    .item-image {
+      width: 50px;
+      height: 100%;
+    }
+
+    &.big {
+      .item-image {
+        width: 120px;
+      }
+    }
+  }
+}
