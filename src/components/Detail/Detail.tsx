@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Image, Option } from '../../models';
+import { Image, Option, Variant } from '../../models';
 import ProductImages from '../ProductImages';
 import './Detail.scss';
 
@@ -8,15 +8,15 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
   const [selectedPrice, setSelectedPrice] = useState<number>(variants[0].price);
   const [compareAtPrice, setCompareAtPrice] = useState<number>(variants[0].compare_at_price);
 
-  const selectOptions = (e: any, type: any) => {
-    if (type.name === 'Size') {
-      const size = variants.find((vrnt: any) => vrnt.title.indexOf(e.target.value) > -1);
+  const selectOptions = (val: string, name: string) => {
+    if (name === 'Size') {
+      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1);
       setSelectedPrice(size.price);
       setCompareAtPrice(size.compare_at_price);
     }
-    if (type.name === 'Color') {
-      const size = variants.find((vrnt: any) => vrnt.title.indexOf(e.target.value) > -1);
-      const dropdownImage: Image = images.find((img: any) => img.id === size.image_id);
+    if (name === 'Color') {
+      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1);
+      const dropdownImage: Image = images.find((img: Image) => img.id === size.image_id);
       setSelectedImage(dropdownImage.src);
     }
   };
@@ -49,7 +49,9 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
               {options.map((opt: Option) => (
                 <div className="form-group" key={opt.id}>
                   <label>{opt.name}</label>
-                  <select className="select" onChange={(e: any) => selectOptions(e, opt)}>
+                  <select
+                    className="select"
+                    onChange={(e: any) => selectOptions(e.target.value, opt.name)}>
                     {opt.values.map((val: string) => (
                       <option key={val} value={val}>
                         {val}
