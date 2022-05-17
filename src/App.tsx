@@ -9,7 +9,7 @@ const ProductLists = lazy(() => import('./components/Lists'));
 let PageSize: number = 10;
 
 function App() {
-  const { products, loading } = useFetch();
+  const { products, loading, error } = useFetch();
 
   const [data, setData] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -40,6 +40,7 @@ function App() {
     return data.filter((res: IProduct) => res.title.includes(text));
   };
 
+  if (error) return <span>{error}</span>;
   return (
     <div className="container">
       <div className="app">

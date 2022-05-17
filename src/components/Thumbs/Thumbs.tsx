@@ -4,12 +4,12 @@ import './Thumbs.scss';
 
 const Thumbs = ({ variants, images, change }: any) => {
   return (
-    <div className="product-photo-thumbs">
+    <div className="product-thumbs">
       {images.map((img: Image) =>
         img.variant_ids.length > 0 &&
         variants.map((vrnt: any) => img.variant_ids.includes(vrnt.id)) ? (
           <div
-            className={`product-photo-thumbs__item ${classNames({
+            className={`product-thumbs__items ${classNames({
               big: img.width > img.height,
             })}`}
             key={img.id}

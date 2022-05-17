@@ -22,16 +22,16 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
   };
   return (
     <>
-      <section className="detail-modal">
-        <div className="detail-modal-overlay" onClick={closeModal}></div>
-        <div className="detail-modal-dialog">
-          <div className="detail-modal-header">
+      <section className="modal">
+        <div className="modal__overlay" onClick={closeModal}></div>
+        <div className="modal__dialog">
+          <div className="modal__dialog--header">
             <span className="c-pointer" onClick={closeModal}>
-              x
+              <img width="30" src="close.svg" alt="" />
             </span>
           </div>
-          <div className="detail-modal-body">
-            <div className="detail-modal-body-slider">
+          <div className="modal__dialog--body">
+            <div className="photos">
               <ProductImages
                 variants={variants}
                 images={images}
@@ -40,9 +40,9 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
                 changeImage={(selected: string) => setSelectedImage(selected)}
               />
             </div>
-            <div className="detail-modal-body-content">
-              <h3 className="detail-modal-body-content__title">{title}</h3>
-              <h2 className="detail-modal-body-content__price">
+            <div className="modal-content">
+              <h3 className="modal-content__title">{title}</h3>
+              <h2 className="modal-content__price">
                 ${selectedPrice}
                 {compareAtPrice && <span className="compare">${compareAtPrice}</span>}
               </h2>

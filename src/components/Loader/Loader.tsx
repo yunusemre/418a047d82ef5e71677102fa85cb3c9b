@@ -1,8 +1,8 @@
 import './Loader.scss';
 
 const Loader = () => (
-  <div className="pos-center">
-    <div className="loader"></div>
+  <div className="loader-wrapper">
+    <div className="loader-wrapper__spinner"></div>
   </div>
 );
 

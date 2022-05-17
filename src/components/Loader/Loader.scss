@@ -1,9 +1,9 @@
-.pos-center {
+.loader-wrapper {
   position: fixed;
   top: calc(50% - 20px);
   left: calc(50% - 20px);
 
-  .loader {
+  &--spinner {
     border: 10px solid #f3f3f3;
     border-top: 10px solid #ddd;
     border-radius: 50%;
