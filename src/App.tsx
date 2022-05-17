@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import Loader from './components/Loader/Loader';
 import { IProduct } from './models';
 import useFetch from './service';
@@ -11,7 +11,6 @@ let PageSize: number = 10;
 function App() {
   const { products, loading, error } = useFetch();
 
-  const fieldRef = useRef<any>(null);
   const [data, setData] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [list, setList] = useState<IProduct[]>([]);
