@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import Loader from './components/Loader/Loader';
 import { IProduct } from './models';
 import useFetch from './service';
@@ -11,6 +11,7 @@ let PageSize: number = 10;
 function App() {
   const { products, loading, error } = useFetch();
 
+  const fieldRef = useRef<any>(null);
   const [data, setData] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [list, setList] = useState<IProduct[]>([]);
@@ -21,6 +22,13 @@ function App() {
     const lastPageIndex = firstPageIndex + PageSize;
     return list.slice(firstPageIndex, lastPageIndex);
   }, [currentPage, list]);
+
+  const scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
 
   useEffect(() => {
     setData(products);
@@ -59,7 +67,10 @@ function App() {
               currentPage={currentPage}
               totalCount={list.length}
               pageSize={PageSize}
-              onPageChange={(page: number) => setCurrentPage(page)}
+              onPageChange={(page: number) => {
+                setCurrentPage(page);
+                scrollTop();
+              }}
             />
           )}
         </Suspense>
