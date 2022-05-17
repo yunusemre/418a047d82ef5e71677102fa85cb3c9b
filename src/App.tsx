@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import Loader from './components/Loader/Loader';
-import { IProduct, IRootObject } from './models';
-import { API, requestOptions } from './service';
+import { IProduct } from './models';
+import useFetch from './service';
 
 const Pagination = lazy(() => import('./components/Pagination'));
 const ProductLists = lazy(() => import('./components/Lists'));
@@ -9,20 +9,12 @@ const ProductLists = lazy(() => import('./components/Lists'));
 let PageSize: number = 10;
 
 function App() {
+  const { products, loading } = useFetch();
+
   const [data, setData] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [list, setList] = useState<IProduct[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-
-  const fetchData = async () => {
-    setIsLoading(true);
-    const response: Response = await fetch(API, requestOptions);
-    const responseData: IRootObject = await response.json();
-
-    setData(responseData.products);
-    setList(responseData.products);
-    setIsLoading(false);
-  };
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
@@ -31,21 +23,21 @@ function App() {
   }, [currentPage, list]);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    setData(products);
+    setList(products);
+    setIsLoading(loading);
+  }, [products, loading]);
 
-  const handleChange = ({ target }: { target: any }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (currentPage !== 1) setCurrentPage(1);
-    if (target.value !== '') {
-      const results = data.filter((res: any) =>
-        res.title.toLowerCase().includes(target.value.toLowerCase())
-      );
-      setList(results);
-    } else {
-      setList(data);
-    }
+    const text: string = e.target.value;
+    text !== ''
+      ? setList(
+          data.filter((res: IProduct) => res.title.toLowerCase().includes(text.toLowerCase()))
+        )
+      : setList(data);
 
-    return data.filter((res) => res.title.includes(target.value));
+    return data.filter((res: IProduct) => res.title.includes(text));
   };
 
   return (
@@ -57,16 +49,18 @@ function App() {
           placeholder="Search..."
           onChange={handleChange}
         />
-        <h4>{!isLoading && list.length === 0 && <span>Not found</span>}</h4>
+        {!isLoading && list.length === 0 && <h4>Search result not found</h4>}
         <Suspense fallback={<Loader />}>
           <ProductLists data={currentTableData} />
-          <Pagination
-            className="pagination-bar"
-            currentPage={currentPage}
-            totalCount={list.length}
-            pageSize={PageSize}
-            onPageChange={(page: number) => setCurrentPage(page)}
-          />
+          {list.length > 10 && (
+            <Pagination
+              className="pagination-bar"
+              currentPage={currentPage}
+              totalCount={list.length}
+              pageSize={PageSize}
+              onPageChange={(page: number) => setCurrentPage(page)}
+            />
+          )}
         </Suspense>
       </div>
     </div>

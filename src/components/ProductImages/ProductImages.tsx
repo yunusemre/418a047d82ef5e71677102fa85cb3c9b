@@ -1,8 +1,9 @@
 import classNames from 'classnames';
+import { IProduct } from '../../models';
 import Thumbs from '../Thumbs';
 import './ProductImages.scss';
 
-const ProductImages = ({ variants, images, image, selectedImage, setSelectedImage }: any) => (
+const ProductImages = ({ variants, images, image, selectedImage, changeImage }: IProduct) => (
   <div className="product-photo-container">
     <div className="product-photo-container__showroom text-center">
       {
@@ -10,7 +11,6 @@ const ProductImages = ({ variants, images, image, selectedImage, setSelectedImag
           className={`first-image ${classNames({
             big: image.width > image.height,
           })}`}
-          key={image.id}
           src={selectedImage}
           alt={image.alt}
         />
@@ -18,7 +18,7 @@ const ProductImages = ({ variants, images, image, selectedImage, setSelectedImag
     </div>
     <Thumbs
       variants={variants}
-      change={(newImage: string) => setSelectedImage(newImage)}
+      change={(selected: string) => changeImage(selected)}
       images={images}
     />
   </div>

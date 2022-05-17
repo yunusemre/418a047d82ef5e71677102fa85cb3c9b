@@ -4,9 +4,9 @@ import ProductImages from '../ProductImages';
 import './Detail.scss';
 
 const Detail = ({ title, body_html, image, images, options, variants, closeModal }: any) => {
-  const [selectedImage, setSelectedImage] = useState(image.src);
-  const [selectedPrice, setSelectedPrice] = useState(variants[0].price);
-  const [compareAtPrice, setCompareAtPrice] = useState(variants[0].compare_at_price);
+  const [selectedImage, setSelectedImage] = useState<string>(image.src);
+  const [selectedPrice, setSelectedPrice] = useState<number>(variants[0].price);
+  const [compareAtPrice, setCompareAtPrice] = useState<number>(variants[0].compare_at_price);
 
   const selectOptions = (e: any, type: any) => {
     if (type.name === 'Size') {
@@ -37,7 +37,7 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
                 images={images}
                 image={image}
                 selectedImage={selectedImage}
-                setSelectedImage={(e: any) => setSelectedImage(e)}
+                changeImage={(selected: string) => setSelectedImage(selected)}
               />
             </div>
             <div className="detail-modal-body-content">

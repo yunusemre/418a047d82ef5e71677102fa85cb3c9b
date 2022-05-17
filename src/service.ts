@@ -12,31 +12,31 @@ export const requestOptions = {
 };
 
 const useFetch = () => {
-  const [data, setData] = useState<IProduct[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<any>(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true);
+      setLoading(true);
       const response: Response = await fetch(API, requestOptions);
 
       if (!response.ok) {
         const message = `An error occured: ${response.status}`;
         setError(message);
-        setIsLoading(false);
+        setLoading(false);
         throw new Error(message);
       }
 
       const responseData: IRootObject = await response.json();
-      setData(responseData.products);
-      setIsLoading(false);
+      setProducts(responseData.products);
+      setLoading(false);
     };
 
     fetchData();
   }, []);
 
-  return { data, isLoading, error };
+  return { products, loading, error };
 };
 
 export default useFetch;
