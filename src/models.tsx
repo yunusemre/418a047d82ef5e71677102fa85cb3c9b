@@ -1,44 +1,47 @@
 export interface Variant {
-  id: any;
-  product_id: any;
-  title: string;
-  price: string;
-  option1: string;
-  option2: string;
-  option3?: any;
-  image_id?: number;
+  id?: string
+  product_id?: string
+  title?: string
+  price?: string
+  compare_at_price?: string
+  option1?: string
+  option2?: string
+  option3?: string
+  image_id?: number
 }
 
 export interface Option {
-  id: any;
-  product_id: any;
-  name: string;
-  position: number;
-  values: string[];
+  id: string
+  product_id: string
+  name: string
+  position: number
+  values: string[]
 }
 
 export interface Image {
-  id: any;
-  alt?: any;
-  width: number;
-  height: number;
-  src: string;
-  variant_ids: any[];
+  id: string
+  alt?: string
+  width: number
+  height: number
+  src: string
+  variant_ids: string[]
 }
 
 export interface IProduct {
-  id?: any;
-  title?: string | any;
-  body_html?: string;
-  vendor?: string;
-  variants: Variant[];
-  options?: Option[];
-  images: Image[];
-  image: Image;
-  selectedImage?: string;
-  changeImage?: string | any;
+  id?: string
+  title?: string | any
+  body_html?: string
+  vendor?: string
+  variants: Variant[]
+  options?: Option[]
+  images: Image[]
+  image: Image
+  selectedImage?: string
+  changeImage?: string | any
+  closeModal?: string | any
+  change?: string | any
 }
 
 export interface IRootObject {
-  products: IProduct[];
+  products: IProduct[]
 }

@@ -1,37 +1,37 @@
-import { useState } from 'react';
-import { Image, Option, Variant } from '../../models';
-import ProductImages from '../ProductImages';
-import './Detail.scss';
+import { useState } from 'react'
+import { Image, IProduct, Option, Variant } from '../../models'
+import ProductImages from '../ProductImages'
+import './Detail.scss'
 
-const Detail = ({ title, body_html, image, images, options, variants, closeModal }: any) => {
-  const [selectedImage, setSelectedImage] = useState<string>(image.src);
-  const [selectedPrice, setSelectedPrice] = useState<number>(variants[0].price);
-  const [compareAtPrice, setCompareAtPrice] = useState<number>(variants[0].compare_at_price);
+const Detail = ({ title, body_html, image, images, options, variants, closeModal }: IProduct) => {
+  const [selectedImage, setSelectedImage] = useState<string>(image.src)
+  const [selectedPrice, setSelectedPrice] = useState<number>(variants[0].price)
+  const [compareAtPrice, setCompareAtPrice] = useState<number>(variants[0].compare_at_price)
 
   const selectOptions = (val: string, name: string) => {
     if (name === 'Size') {
-      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1);
-      setSelectedPrice(size.price);
-      setCompareAtPrice(size.compare_at_price);
+      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1)
+      setSelectedPrice(size.price)
+      setCompareAtPrice(size.compare_at_price)
     }
     if (name === 'Color') {
-      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1);
-      const dropdownImage: Image = images.find((img: Image) => img.id === size.image_id);
-      setSelectedImage(dropdownImage.src);
+      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1)
+      const dropdownImage: Image = images.find((img: Image) => img.id === size.image_id)
+      setSelectedImage(dropdownImage.src)
     }
-  };
+  }
   return (
     <>
-      <section className="modal">
-        <div className="modal__overlay" onClick={closeModal}></div>
-        <div className="modal__dialog">
-          <div className="modal__dialog--header">
-            <span className="c-pointer" onClick={closeModal}>
-              <img width="30" src="close.svg" alt="" />
+      <section className='modal'>
+        <div className='modal__overlay' onClick={closeModal}></div>
+        <div className='modal__dialog'>
+          <div className='modal__dialog--header'>
+            <span className='c-pointer' onClick={closeModal}>
+              <img width='30' src='close.svg' alt='' />
             </span>
           </div>
-          <div className="modal__dialog--body">
-            <div className="photos">
+          <div className='modal__dialog--body'>
+            <div className='photos'>
               <ProductImages
                 variants={variants}
                 images={images}
@@ -40,18 +40,19 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
                 changeImage={(selected: string) => setSelectedImage(selected)}
               />
             </div>
-            <div className="modal-content">
-              <h3 className="modal-content__title">{title}</h3>
-              <h2 className="modal-content__price">
+            <div className='modal-content'>
+              <h3 className='modal-content__title'>{title}</h3>
+              <h2 className='modal-content__price'>
                 ${selectedPrice}
-                {compareAtPrice && <span className="compare">${compareAtPrice}</span>}
+                {compareAtPrice && <span className='compare'>${compareAtPrice}</span>}
               </h2>
               {options.map((opt: Option) => (
-                <div className="form-group" key={opt.id}>
+                <div className='form-group' key={opt.id}>
                   <label>{opt.name}</label>
                   <select
-                    className="select"
-                    onChange={(e: any) => selectOptions(e.target.value, opt.name)}>
+                    className='select'
+                    onChange={(e: any) => selectOptions(e.target.value, opt.name)}
+                  >
                     {opt.values.map((val: string) => (
                       <option key={val} value={val}>
                         {val}
@@ -67,7 +68,7 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
         </div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default Detail;
+export default Detail

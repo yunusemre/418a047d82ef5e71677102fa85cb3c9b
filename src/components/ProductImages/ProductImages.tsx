@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import { IProduct } from '../../models';
-import Thumbs from '../Thumbs';
-import './ProductImages.scss';
+import classNames from 'classnames'
+import { IProduct } from '../../models'
+import Thumbs from '../Thumbs'
+import './ProductImages.scss'
 
 const ProductImages = ({ variants, images, image, selectedImage, changeImage }: IProduct) => (
-  <div className="product-photos">
-    <div className="product-photos__promote text-center">
+  <div className='product-photos'>
+    <div className='product-photos__promote text-center'>
       {
         <img
           className={`promote-image ${classNames({
@@ -22,6 +22,6 @@ const ProductImages = ({ variants, images, image, selectedImage, changeImage }: 
       images={images}
     />
   </div>
-);
+)
 
-export default ProductImages;
+export default ProductImages

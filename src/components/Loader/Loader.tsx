@@ -1,9 +1,9 @@
-import './Loader.scss';
+import './Loader.scss'
 
 const Loader = () => (
-  <div className="loader-wrapper">
-    <div className="loader-wrapper__spinner"></div>
+  <div className='loader-wrapper'>
+    <div className='loader-wrapper__spinner'></div>
   </div>
-);
+)
 
-export default Loader;
+export default Loader
