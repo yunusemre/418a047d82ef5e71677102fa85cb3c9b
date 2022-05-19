@@ -1,8 +1,8 @@
 import classNames from 'classnames'
-import { Image, IProduct, Variant } from '../../models'
+import { Image, IThumbs, Variant } from '../../models'
 import './Thumbs.scss'
 
-const Thumbs = ({ variants, images, change }: IProduct) => {
+const Thumbs = ({ variants, images, change }: IThumbs) => {
   return (
     <div className='product-thumbs'>
       {images.map((img: Image) =>

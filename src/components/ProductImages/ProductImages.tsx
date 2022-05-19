@@ -1,9 +1,9 @@
 import classNames from 'classnames'
-import { IProduct } from '../../models'
+import { IProductImages } from '../../models'
 import Thumbs from '../Thumbs'
 import './ProductImages.scss'
 
-const ProductImages = ({ variants, images, image, selectedImage, changeImage }: IProduct) => (
+const ProductImages = ({ variants, images, image, selectedImage, changeImage }: IProductImages) => (
   <div className='product-photos'>
     <div className='product-photos__promote text-center'>
       {

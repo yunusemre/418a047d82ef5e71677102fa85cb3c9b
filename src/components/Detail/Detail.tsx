@@ -5,18 +5,17 @@ import './Detail.scss'
 
 const Detail = ({ title, body_html, image, images, options, variants, closeModal }: IProduct) => {
   const [selectedImage, setSelectedImage] = useState<string>(image.src)
-  const [selectedPrice, setSelectedPrice] = useState<number>(variants[0].price)
-  const [compareAtPrice, setCompareAtPrice] = useState<number>(variants[0].compare_at_price)
+  const [selectedPrice, setSelectedPrice] = useState<string>(variants[0].price)
+  const [compareAtPrice, setCompareAtPrice] = useState<string>(variants[0].compare_at_price)
 
   const selectOptions = (val: string, name: string) => {
+    const size: any = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1)
     if (name === 'Size') {
-      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1)
       setSelectedPrice(size.price)
       setCompareAtPrice(size.compare_at_price)
     }
     if (name === 'Color') {
-      const size = variants.find((vrnt: Variant) => vrnt.title.indexOf(val) > -1)
-      const dropdownImage: Image = images.find((img: Image) => img.id === size.image_id)
+      const dropdownImage: any = images.find((img: Image) => img.id === size.image_id)
       setSelectedImage(dropdownImage.src)
     }
   }
@@ -27,7 +26,7 @@ const Detail = ({ title, body_html, image, images, options, variants, closeModal
         <div className='modal__dialog'>
           <div className='modal__dialog--header'>
             <span className='c-pointer' onClick={closeModal}>
-              <img width='30' src='close.svg' alt='' />
+              <img width='30' src='close.svg' alt='close' />
             </span>
           </div>
           <div className='modal__dialog--body'>

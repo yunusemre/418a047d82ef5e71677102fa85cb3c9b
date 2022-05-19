@@ -1,39 +1,33 @@
 export interface Variant {
-  id?: string
-  product_id?: string
-  title?: string
-  price?: string
-  compare_at_price?: string
-  option1?: string
-  option2?: string
-  option3?: string
-  image_id?: number
+  id?: number | string | any
+  title: string
+  price: string
+  compare_at_price: string
+  image_id: number
 }
 
 export interface Option {
-  id: string
-  product_id: string
+  id: number
   name: string
   position: number
   values: string[]
 }
 
 export interface Image {
-  id: string
+  id: number
   alt?: string
   width: number
   height: number
   src: string
-  variant_ids: string[]
+  variant_ids: number[]
 }
 
 export interface IProduct {
-  id?: string
+  id: number
   title?: string | any
-  body_html?: string
-  vendor?: string
+  body_html: string
   variants: Variant[]
-  options?: Option[]
+  options: Option[]
   images: Image[]
   image: Image
   selectedImage?: string
@@ -44,4 +38,18 @@ export interface IProduct {
 
 export interface IRootObject {
   products: IProduct[]
+}
+
+export interface IThumbs {
+  variants: Variant[]
+  images: Image[]
+  change: (img: string) => void
+}
+
+export interface IProductImages {
+  variants: Variant[]
+  images: Image[]
+  image: Image
+  selectedImage: string
+  changeImage: (img: string) => void
 }
