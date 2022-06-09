@@ -3,7 +3,22 @@ import { Image, IProduct, Option, Variant } from '../../models'
 import ProductImages from '../ProductImages'
 import './Detail.scss'
 
-const Detail = ({ title, body_html, image, images, options, variants, closeModal }: IProduct) => {
+const Detail = ({
+  title = '',
+  body_html = '<div>body html</div>',
+  image = {
+    id: 1,
+    alt: 'alt',
+    width: 100,
+    height: 100,
+    src: 'https://via.placeholder.com/100',
+    variant_ids: [123123123],
+  },
+  images = [],
+  options = [],
+  variants = [],
+  closeModal,
+}: IProduct) => {
   const [selectedImage, setSelectedImage] = useState<string>(image.src)
   const [selectedPrice, setSelectedPrice] = useState<string>(variants[0].price)
   const [compareAtPrice, setCompareAtPrice] = useState<string>(variants[0].compare_at_price)
