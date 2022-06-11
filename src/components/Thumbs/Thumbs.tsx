@@ -13,9 +13,16 @@ const Thumbs = ({ variants, images, change }: IThumbs) => {
               big: img.width > img.height,
             })}`}
             key={img.id}
-            onClick={() => change(img.src)}
           >
-            <img className='c-pointer item-image' src={img.src} alt={img.alt} />
+            <a
+              href='#'
+              onClick={(e: React.MouseEvent<HTMLElement>) => {
+                e.preventDefault()
+                change(img.src)
+              }}
+            >
+              <img className='c-pointer item-image' src={img.src} alt={img.alt} />
+            </a>
           </div>
         ) : null,
       )}

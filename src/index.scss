@@ -1,3 +1,9 @@
+:root {
+  --color: #858585;
+  --border-color: #ddd;
+  --border-color-focus: #eee;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,7 +11,11 @@ body {
     'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #858585;
+  color: var(--color);
+}
+
+a {
+  text-decoration: none;
 }
 
 .container {
@@ -31,7 +41,7 @@ body {
   padding: 6px 12px;
   font-size: 13px;
   border: 1px solid transparent;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border-color);
 
   &:focus {
     outline: 0;
@@ -60,15 +70,14 @@ body {
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-color: white;
-  color: #858585;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   border-radius: 4px;
   padding: 4px 28px 4px 10px;
   margin: 0 4px 4px 0px;
   cursor: pointer;
 
   &:focus {
-    outline: 1px solid #ddd;
+    outline: 1px solid var(--border-color);
   }
 }
 
@@ -86,5 +95,5 @@ select::-ms-expand {
 }
 
 hr {
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border-color-focus);
 }
